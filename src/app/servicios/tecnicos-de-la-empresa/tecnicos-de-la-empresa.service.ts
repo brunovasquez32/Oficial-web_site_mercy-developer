@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,6 @@ export class TecnicosDeLaEmpresaService {
   constructor(private http: HttpClient) { }
 
   obtenerProfesionales(){
-    return this.http.get(`${this.backend}/obtener-profesionales}`);
+    return this.http.get(`${this.backend}/obtener-profesionales`,);
   }
 }

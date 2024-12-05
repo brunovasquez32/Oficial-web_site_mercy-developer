@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { SolicitudFormularioService } from '../../servicios/solicitud-formulario/solicitud-formulario.service';
 import { response } from 'express';
 import {TecnicosDeLaEmpresaService} from '../../servicios/tecnicos-de-la-empresa/tecnicos-de-la-empresa.service';
+
 import { error } from 'console';
 
 @Component({
@@ -14,7 +15,7 @@ export class ContactanosComponent {
   formularioForm;
   datos_formulario: any;
   obtener_profesionales:any;
-  constructor(private formBuild: FormBuilder, private solicitudFormularioSrv:SolicitudFormularioService, private TecnicosDeLaEmpresaService: TecnicosDeLaEmpresaService){
+  constructor(private formBuild: FormBuilder, private solicitudFormularioSrv:SolicitudFormularioService, private TecnicosDeLaEmpresaSrv: TecnicosDeLaEmpresaService){
     this.formularioForm = this.formBuild.group({
       nombre: '',
       apellido: '',
@@ -24,16 +25,13 @@ export class ContactanosComponent {
     });
   }
   
-  
- 
-
   ngOnInit(){
   }
   
   obtenerProfesionales(){
-    this.TecnicosDeLaEmpresaService.obtenerProfesionales().subscribe(
+    this.TecnicosDeLaEmpresaSrv.obtenerProfesionales().subscribe (
       (response:any) => {
-        this.obtener_profesionales = response.profesional;
+        this.obtener_profesionales = response.profesionales;
         console.log(this.obtener_profesionales);
       }, error => {
         console.log(error)
